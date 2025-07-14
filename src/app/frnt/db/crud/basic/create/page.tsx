@@ -36,3 +36,16 @@ export default function Create() {
     );
 
 }
+
+// 해설
+// 이벤트 핸들러 함수 Change = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {} 에 해설
+// React.ChangeEvent<> : React에서 제공하는 타입지정. HTML onChange 이벤트가 발생했을 때 생성되는 이벤트 객체 타입을 정의한것. 여기에 <>를 붙이면 제네릭이 됨.
+// HTMLInputElement : input 태그를 가리킴
+// HTMLTextAreaElement : TextArea 태그를 가리킴
+// 이밖에 (HTMLDivElement: Div 태그를 가리킴, HTMLButtonElement: Button태그를 가리킴, HTMLSelectElement: Select 태그를 가리킴) 등이 있음.
+// 
+// 이벤트 핸들러 함수 const Submit = async (e: React.FormEvent) => {} 해설
+// React.FormEvent: 폼 제출(Submit) 이벤트에 사용되는 타입.
+// 위 모든 것들은 사실상 타입 지정때문에 사용하는 타입관련 함수들. 타입지정이 아니라면 사용될 일이 없다.
+//
+// e.preventDefault();: 폼 제출(Submit)시 새로고침 효과(페이지 깜빡)를 막기위함
