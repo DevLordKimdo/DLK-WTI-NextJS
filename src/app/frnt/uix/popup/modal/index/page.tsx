@@ -1,6 +1,6 @@
 'use client'
 
-export default function Home() {
+export default function Index() {
   return (
     <>
       <h2>Hello World!</h2>

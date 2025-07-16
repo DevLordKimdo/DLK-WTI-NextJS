@@ -1,5 +1,6 @@
-"use client";
+'use client';
 
+import '@/css/styles.css'
 import { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { DbCrudType } from '@/types/db.crud.type';
