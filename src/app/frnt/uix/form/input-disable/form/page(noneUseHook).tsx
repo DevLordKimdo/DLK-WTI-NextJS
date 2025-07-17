@@ -1,6 +1,3 @@
-// hooks를 사용하지 않는 방법으로 input form post전송 구현하는 방법.
-// post 전송이 정상적으로 이루어 지는 것을 확인했으나 실무에서는 이런식으로 
-
 'use client'
 
 import '@/css/styles.css'
@@ -107,3 +104,6 @@ export default function Form() {
         </form>
     );
 }
+
+// hooks를 사용하지 않는 방법으로 input form post전송 구현하는 방법.
+// post 전송이 정상적으로 이루어 지는 것을 확인했으나 실무에서는 이런식으로 작성하지 않는 다는 점 주의.

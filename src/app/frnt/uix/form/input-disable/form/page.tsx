@@ -127,3 +127,6 @@ export default function Form() {
         </form>
     );
 }
+
+// hooks를 이용하여 input 값들을 form 전달하는 작업.
+// hooks를 이용하지 않고 단순 전달하는 코드는 page(noneUseHook).tsx 참조
