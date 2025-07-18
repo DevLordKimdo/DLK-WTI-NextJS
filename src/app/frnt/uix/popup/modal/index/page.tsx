@@ -2,7 +2,7 @@
 
 import '@/css/styles.css'
 import { useState } from 'react';
-import './base.css'
+import './modal.css'
 
 interface ModalProps {
 	isOpen: boolean;
