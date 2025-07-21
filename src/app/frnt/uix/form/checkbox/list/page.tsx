@@ -44,7 +44,7 @@ export default function List() {
         let checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
 
         // API 쪽은 DTO 또는 타입 때문에 객체 키(key)값 정확히 기입해서 보내줘야 함
-        let checkIdx = { idxList : checkedList }
+        let checkIdx = { checkIdx : checkedList }
 
         await fetch(`${BASE_URL}/rest/uix/form/checkbox/copy`, {
             method: 'POST',
@@ -63,8 +63,8 @@ export default function List() {
     const CheckCopyForm = async (e:any) => {
         e.preventDefault();
 
-        const checkedList = list.filter(item => item.checked).map(item => item.idx);
-        const formData = new FormData();
+        let checkedList = list.filter(item => item.checked).map(item => item.idx);
+        let formData = new FormData();
         checkedList.forEach(id => { formData.append('checkIdx', id.toString()); });
 
         await fetch(`${BASE_URL}/rest/uix/form/checkbox/copy-form`, {
@@ -81,7 +81,7 @@ export default function List() {
     const CheckUpdate = async (e:any) => {
         e.preventDefault();
         let checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
-        let dataForm = { idxList: checkedList, ...updateForm }
+        let dataForm = { ...updateForm, checkIdx: checkedList }
 
         await fetch(`${BASE_URL}/rest/uix/form/checkbox/update`, {
             method: 'POST',
@@ -96,8 +96,8 @@ export default function List() {
 
     const CheckDelete = async (e:any) => {
         e.preventDefault();
-        const checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
-        let checkIdx = { idxList : checkedList }
+        let checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
+        let checkIdx = { checkIdx : checkedList }
 
         await fetch(`${BASE_URL}/rest/uix/form/checkbox/delete`, {
             method: 'POST',
@@ -163,3 +163,5 @@ export default function List() {
         </>
     );
 }
+
+// 주의! 성능이슈 발생. list가 2000개가 될 시(정확히는 체크박스가 2000개) input 태그에 타이핑이 느려지는 이슈가 있음. 추후 해결요망.
