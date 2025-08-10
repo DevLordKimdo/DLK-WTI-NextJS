@@ -1,11 +1,11 @@
 'use client';
 
 import '@/css/styles.css'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { DbTransactionalType } from '@/types/db.transactional.type';
 const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
 
-export default function form() {
+export default function Form() {
 
     const [form, setForm] = useState<DbTransactionalType>({ name : '', title : '', content : '', errorOption: 'true', transOption: 'false' });
     const [checkValue , setCheckValue] = useState({ errorCheck: true, transCheck: false });
@@ -21,7 +21,7 @@ export default function form() {
     const Submit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        let dataForm = { ...form, errorOption: checkValue.errorCheck ? true : false, transOption: checkValue.transCheck ? true : false }
+        const dataForm = { ...form, errorOption: checkValue.errorCheck ? true : false, transOption: checkValue.transCheck ? true : false }
 
         await fetch(`${BASE_URL}/rest/db/transactional/basic/form`, {
             method: 'POST',

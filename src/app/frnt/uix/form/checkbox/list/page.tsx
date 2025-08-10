@@ -23,7 +23,7 @@ export default function List() {
     const isAllChecked = list.length > 0 && list.every(item => item.checked);
 
     const CheckAll = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let checked = e.target.checked;
+        const checked = e.target.checked;
         setList(list.map(item => ({ ...item, checked })));
     };
 
@@ -41,10 +41,10 @@ export default function List() {
         e.preventDefault();
 
         // 체크박스가 체크된 것들 대상으로 idx 값을 String 으로 변환해 넣어주기
-        let checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
+        const checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
 
         // API 쪽은 DTO 또는 타입 때문에 객체 키(key)값 정확히 기입해서 보내줘야 함
-        let checkIdx = { checkIdx : checkedList }
+        const checkIdx = { checkIdx : checkedList }
 
         await fetch(`${BASE_URL}/rest/uix/form/checkbox/copy`, {
             method: 'POST',
@@ -80,8 +80,8 @@ export default function List() {
 
     const CheckUpdate = async (e:any) => {
         e.preventDefault();
-        let checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
-        let dataForm = { ...updateForm, checkIdx: checkedList }
+        const checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
+        const dataForm = { ...updateForm, checkIdx: checkedList }
 
         await fetch(`${BASE_URL}/rest/uix/form/checkbox/update`, {
             method: 'POST',
@@ -96,8 +96,8 @@ export default function List() {
 
     const CheckDelete = async (e:any) => {
         e.preventDefault();
-        let checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
-        let checkIdx = { checkIdx : checkedList }
+        const checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
+        const checkIdx = { checkIdx : checkedList }
 
         await fetch(`${BASE_URL}/rest/uix/form/checkbox/delete`, {
             method: 'POST',
