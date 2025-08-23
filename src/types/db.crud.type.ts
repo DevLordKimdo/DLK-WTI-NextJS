@@ -2,7 +2,7 @@ export interface DbCrudType {
          idx?: number;
        title?: string;
      content?: string;
-        name?: string;
+    username?: string;
     datetime?: string;
          hit?: number;
 }

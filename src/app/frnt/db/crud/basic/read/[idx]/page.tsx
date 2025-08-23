@@ -48,9 +48,9 @@ export default function Read() {
                 <div>번호 : {Read.idx}</div>
                 <div>날짜 : {Read.datetime}</div>
                 <div>조회 : {Read.hit}</div>
-                <div>이름 : <input    value={Read.name}    onChange={e => setRead({...Read, name: e.target.value})}    /></div>
-                <div>제목 : <input    value={Read.title}   onChange={e => setRead({...Read, title: e.target.value})}   /></div>
-                <div>내용 : <textarea value={Read.content} onChange={e => setRead({...Read, content: e.target.value})} /></div>
+                <div>이름 : <input    value={Read.username} onChange={e => setRead({...Read, username: e.target.value})}    /></div>
+                <div>제목 : <input    value={Read.title}    onChange={e => setRead({...Read, title: e.target.value})}   /></div>
+                <div>내용 : <textarea value={Read.content}  onChange={e => setRead({...Read, content: e.target.value})} /></div>
                 <button type="submit">수정</button>
             </form>
             <Link href="/frnt/db/crud/basic/list"><button>목록</button></Link>

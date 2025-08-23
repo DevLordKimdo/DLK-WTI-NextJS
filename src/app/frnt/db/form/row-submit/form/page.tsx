@@ -14,7 +14,7 @@ export default function Form() {
     const [nextIdx, setNextIdx] = useState(1);
 
     const addRow = () => {
-        setRows(prev => [...prev, { idx: nextIdx, title: '', name: '', content: '' }]);
+        setRows(prev => [...prev, { idx: nextIdx, title: '', username: '', content: '' }]);
         setNextIdx(prev => prev + 1);
     };
 
@@ -47,9 +47,9 @@ export default function Form() {
 
     useEffect(() => {
         setRows([
-            { idx: 1, title: '', name: '', content: '' },
-            { idx: 2, title: '', name: '', content: '' },
-            { idx: 3, title: '', name: '', content: '' }
+            { idx: 1, title: '', username: '', content: '' },
+            { idx: 2, title: '', username: '', content: '' },
+            { idx: 3, title: '', username: '', content: '' }
         ]);
         setNextIdx(4);
     }, []);
@@ -83,7 +83,7 @@ export default function Form() {
                                 <input type="text" name="title" value={row.title} onChange={e => changeRow(row.idx, 'title', e.target.value)} />
                             </td>
                             <td>
-                                <input type="text" name="name" value={row.name} onChange={e => changeRow(row.idx, 'name', e.target.value)} />
+                                <input type="text" name="username" value={row.username} onChange={e => changeRow(row.idx, 'username', e.target.value)} />
                             </td>
                             <td>
                                 <textarea name="content" value={row.content} onChange={e => changeRow(row.idx, 'content', e.target.value)} />

@@ -40,7 +40,7 @@ export default function List() {
 						<tr key={list.idx}>
 							<td>{list.idx}</td>
 							<td><Link href={`/frnt/db/crud/basic/read/${list.idx}`}>{list.title}</Link></td>
-							<td>{list.name}</td>
+							<td>{list.username}</td>
 							<td>{list.datetime}</td>
 							<td>{list.hit}</td>
 						</tr>

@@ -55,7 +55,7 @@ export default function Search() {
 						<tr key={list.idx}>
 							<td>{list.idx}</td>
 							<td>{list.title}</td>
-							<td>{list.name}</td>
+							<td>{list.username}</td>
 							<td>{list.datetime}</td>
 							<td>{list.hit}</td>
 						</tr>
@@ -68,7 +68,7 @@ export default function Search() {
                                 <select name="searchOption" value={search.searchOption} onChange={Change} >
                                     <option value="title"   >title</option>
                                     <option value="content" >content</option>
-                                    <option value="name"    >name</option>
+                                    <option value="username">username</option>
                                 </select>
                                 <input type="text" name="searchKeyword"   value={search.searchKeyword}   onChange={Change} />
                                 <input type="date" name="searchDateStart" value={search.searchDateStart} onChange={Change} /> ~

@@ -31,7 +31,7 @@ export default function List() {
         setList(list.map(item => item.idx === idx ? { ...item, checked } : item ));
     }
 
-    const [updateForm, setUpdateForm] = useState<DbCrudType>({ title: '', content: '', name: '', hit: 0 });
+    const [updateForm, setUpdateForm] = useState<DbCrudType>({ title: '', content: '', username: '', hit: 0 });
 
     const ChangeForm = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setUpdateForm({ ...updateForm, [e.target.name]: e.target.value });
@@ -138,7 +138,7 @@ export default function List() {
                                 <td><input type="checkbox" name="checkIdx" value={list.idx} checked={list.checked || false} onChange={(e) => SetChecked(list.idx, e.target.checked)} /></td>
                                 <td>{list.idx}</td>
                                 <td>{list.title}</td>
-                                <td>{list.name}</td>
+                                <td>{list.username}</td>
                                 <td>{list.datetime}</td>
                                 <td>{list.hit}</td>
                             </tr>
@@ -147,8 +147,8 @@ export default function List() {
                     <tfoot>
                         <tr>
                             <td colSpan={6}>
-                                     제목 : <input type="text" name="title"  value={updateForm.title}  onChange={ChangeForm} />
-                                <br/>이름 : <input type="text" name="name" value={updateForm.name} onChange={ChangeForm} />
+                                     제목 : <input type="text" name="title"    value={updateForm.title}  onChange={ChangeForm} />
+                                <br/>이름 : <input type="text" name="username" value={updateForm.username} onChange={ChangeForm} />
                                 <br/>내용 : <textarea name="content" value={updateForm.content} onChange={ChangeForm}  />
                                 <br/>조회수 : <input type="number" name="hit" min="0" max="1000" value={updateForm.hit} onChange={ChangeForm} />
                                 <br/>

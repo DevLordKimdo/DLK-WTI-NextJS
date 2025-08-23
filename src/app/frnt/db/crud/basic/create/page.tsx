@@ -9,7 +9,7 @@ const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
 export default function Create() {
     const router = useRouter();
 
-    const [form, setForm] = useState<DbCrudType>({ title: '', content: '', name: '' });
+    const [form, setForm] = useState<DbCrudType>({ title: '', content: '', username: '' });
 
     const Change = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -29,7 +29,7 @@ export default function Create() {
 
     return (
         <form onSubmit={Submit}>
-            이름 : <input    name="name"    value={form.name}    onChange={Change} placeholder="이름" /><br/>
+            이름 : <input    name="username"    value={form.username}    onChange={Change} placeholder="이름" /><br/>
             제목 : <input    name="title"   value={form.title}   onChange={Change} placeholder="제목" /><br/>
             내용 : <textarea name="content" value={form.content} onChange={Change} placeholder="내용" /><br/>
             <button type="submit">작성</button>
