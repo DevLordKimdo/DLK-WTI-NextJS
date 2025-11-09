@@ -3,7 +3,7 @@
 import '@/css/styles.css'
 import { useState, useEffect } from 'react';
 import { DbCrudType } from '@/types/db.crud.type';
-const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 interface CheckboxType extends DbCrudType {
     idx: number;
@@ -15,7 +15,7 @@ export default function List() {
     const [list, setList] = useState<CheckboxType[]>([]);
 
     useEffect(() => {
-        fetch(`${BASE_URL}/rest/uix/form/checkbox/list`)
+        fetch(`${API_SERVER}/rest/uix/form/checkbox/list`)
         .then(response => response.json())
         .then(data => setList(data));
     }, []);
@@ -46,14 +46,14 @@ export default function List() {
         // API 쪽은 DTO 또는 타입 때문에 객체 키(key)값 정확히 기입해서 보내줘야 함
         const checkIdx = { checkIdx : checkedList }
 
-        await fetch(`${BASE_URL}/rest/uix/form/checkbox/copy`, {
+        await fetch(`${API_SERVER}/rest/uix/form/checkbox/copy`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify(checkIdx),
         });
 
         // API와 통신을 해서 데이터를 가져와 다시 그려주기
-        const response = await fetch(`${BASE_URL}/rest/uix/form/checkbox/list`);
+        const response = await fetch(`${API_SERVER}/rest/uix/form/checkbox/list`);
         const data = await response.json();
         setList(data);
     }
@@ -67,12 +67,12 @@ export default function List() {
         let formData = new FormData();
         checkedList.forEach(id => { formData.append('checkIdx', id.toString()); });
 
-        await fetch(`${BASE_URL}/rest/uix/form/checkbox/copy-form`, {
+        await fetch(`${API_SERVER}/rest/uix/form/checkbox/copy-form`, {
             method: 'POST',
             body: formData
         });
 
-        const response = await fetch(`${BASE_URL}/rest/uix/form/checkbox/list`);
+        const response = await fetch(`${API_SERVER}/rest/uix/form/checkbox/list`);
         const data = await response.json();
         setList(data);
     }
@@ -83,13 +83,13 @@ export default function List() {
         const checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
         const dataForm = { ...updateForm, checkIdx: checkedList }
 
-        await fetch(`${BASE_URL}/rest/uix/form/checkbox/update`, {
+        await fetch(`${API_SERVER}/rest/uix/form/checkbox/update`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify(dataForm),
         });
 
-        const response = await fetch(`${BASE_URL}/rest/uix/form/checkbox/list`);
+        const response = await fetch(`${API_SERVER}/rest/uix/form/checkbox/list`);
         const data = await response.json();
         setList(data);
     }
@@ -99,13 +99,13 @@ export default function List() {
         const checkedList = list.filter(item => item.checked).map(item => item.idx.toString());
         const checkIdx = { checkIdx : checkedList }
 
-        await fetch(`${BASE_URL}/rest/uix/form/checkbox/delete`, {
+        await fetch(`${API_SERVER}/rest/uix/form/checkbox/delete`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify(checkIdx),
         });
 
-        const response = await fetch(`${BASE_URL}/rest/uix/form/checkbox/list`);
+        const response = await fetch(`${API_SERVER}/rest/uix/form/checkbox/list`);
         const data = await response.json();
         setList(data);
     }

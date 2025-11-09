@@ -3,7 +3,7 @@
 import '@/css/styles.css'
 import { useState } from 'react';
 import { DbTransactionalType } from '@/types/db.transactional.type';
-const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 export default function Form() {
 
@@ -23,7 +23,7 @@ export default function Form() {
 
         const dataForm = { ...form, errorOption: checkValue.errorCheck ? true : false, transOption: checkValue.transCheck ? true : false }
 
-        await fetch(`${BASE_URL}/rest/db/transactional/basic/form`, {
+        await fetch(`${API_SERVER}/rest/db/transactional/basic/form`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify(dataForm),

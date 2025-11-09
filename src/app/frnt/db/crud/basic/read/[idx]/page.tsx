@@ -6,21 +6,21 @@ import { useRouter, useParams } from 'next/navigation';
 import { DbCrudType } from '@/types/db.crud.type';
 import Link from 'next/link';
 
-const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 export default function Read() {
     const router = useRouter();
     const { idx } = useParams<{ idx: string }>();
-    const [Read, setRead] = useState<DbCrudType>();
+    const [read, setRead] = useState<DbCrudType>();
 
     useEffect(() => {
-        fetch(`${BASE_URL}/rest/db/crud/basic/read/${idx}`)
+        fetch(`${API_SERVER}/rest/db/crud/basic/read/${idx}`)
         .then(response => response.json())
         .then(data => setRead(data));
     }, [idx]);
 
     const Delete = async () => {
-        await fetch(`${BASE_URL}/rest/db/crud/basic/delete/${idx}`, {
+        await fetch(`${API_SERVER}/rest/db/crud/basic/delete/${idx}`, {
             method: 'GET',
         });
         router.push('/frnt/db/crud/basic/list');
@@ -29,28 +29,28 @@ export default function Read() {
     const Update = async (e: any) => {
         e.preventDefault();
     
-        await fetch(`${BASE_URL}/rest/db/crud/basic/update/${idx}`, {
+        await fetch(`${API_SERVER}/rest/db/crud/basic/update/${idx}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(Read),
+            body: JSON.stringify(read),
         });
 
-        const response = await fetch(`${BASE_URL}/rest/db/crud/basic/read/${idx}`);
+        const response = await fetch(`${API_SERVER}/rest/db/crud/basic/read/${idx}`);
         const data = await response.json();
         setRead(data);
     };
 
-    if (!Read) return <div>로딩중...</div>;
+    if (!read) return <div>로딩중...</div>;
 
     return (
         <div>
             <form onSubmit={Update}>
-                <div>번호 : {Read.idx}</div>
-                <div>날짜 : {Read.datetime}</div>
-                <div>조회 : {Read.hit}</div>
-                <div>이름 : <input    value={Read.username} onChange={e => setRead({...Read, username: e.target.value})}    /></div>
-                <div>제목 : <input    value={Read.title}    onChange={e => setRead({...Read, title: e.target.value})}   /></div>
-                <div>내용 : <textarea value={Read.content}  onChange={e => setRead({...Read, content: e.target.value})} /></div>
+                <div>번호 : {read.idx}</div>
+                <div>날짜 : {read.datetime}</div>
+                <div>조회 : {read.hit}</div>
+                <div>이름 : <input    value={read.username} onChange={e => setRead({...read, username: e.target.value})}    /></div>
+                <div>제목 : <input    value={read.title}    onChange={e => setRead({...read, title: e.target.value})}   /></div>
+                <div>내용 : <textarea value={read.content}  onChange={e => setRead({...read, content: e.target.value})} /></div>
                 <button type="submit">수정</button>
             </form>
             <Link href="/frnt/db/crud/basic/list"><button>목록</button></Link>

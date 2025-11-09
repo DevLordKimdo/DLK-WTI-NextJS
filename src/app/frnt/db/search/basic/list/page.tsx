@@ -3,7 +3,7 @@
 import '@/css/styles.css'
 import { useState, useEffect } from 'react';
 import { DbSearchType } from '@/types/db.search.type';
-const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 export default function Search() {
 
@@ -11,7 +11,7 @@ export default function Search() {
     const [search, setSearch] = useState<DbSearchType>({ searchOption: 'title', searchKeyword: '', searchDateStart: '', searchDateEnded: '', });
     
     const requestData = () => {
-        fetch(`${BASE_URL}/rest/db/search/basic/list`, {
+        fetch(`${API_SERVER}/rest/db/search/basic/list`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify(search),

@@ -3,7 +3,7 @@
 import '@/css/styles.css'
 import { useState, useEffect } from 'react';
 import { DbCrudType } from '@/types/db.crud.type';
-const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 interface RowSubmitType extends DbCrudType {
     idx: number;
@@ -38,7 +38,7 @@ export default function Form() {
 
     const submit = async (e: any) => {
         e.preventDefault();
-        await fetch(`${BASE_URL}/rest/db/form/row-submit/submit`, {
+        await fetch(`${API_SERVER}/rest/db/form/row-submit/submit`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(rows),

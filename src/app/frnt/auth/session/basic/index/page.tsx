@@ -1,12 +1,12 @@
 'use client';
 
 import '@/css/styles.css'
-const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 export default function Index() {
 
     const RequestSession = async () => {
-        await fetch(`${BASE_URL}/rest/auth/session/basic/request-session`, {
+        await fetch(`${API_SERVER}/rest/auth/session/basic/request-session`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', },
             credentials: 'include'
@@ -14,7 +14,7 @@ export default function Index() {
     };
 
     const CheckSession = async () => {
-        const response = await fetch(`${BASE_URL}/rest/auth/session/basic/check-session`, {
+        const response = await fetch(`${API_SERVER}/rest/auth/session/basic/check-session`, {
             method: 'GET',
             credentials: 'include'
         });
@@ -24,7 +24,7 @@ export default function Index() {
     };
 
     const DeleteSession = async () => {
-        await fetch(`${BASE_URL}/rest/auth/session/basic/delete-session`, {
+        await fetch(`${API_SERVER}/rest/auth/session/basic/delete-session`, {
             method: 'POST',
             credentials: 'include'
         });

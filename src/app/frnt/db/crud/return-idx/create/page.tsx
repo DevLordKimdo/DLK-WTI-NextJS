@@ -3,7 +3,7 @@
 import '@/css/styles.css'
 import { useState } from 'react';
 import { DbCrudType } from '@/types/db.crud.type';
-const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 export default function Create() {
 
@@ -16,7 +16,7 @@ export default function Create() {
     const Submit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        await fetch(`${BASE_URL}/rest/db/crud/return-idx/create`, {
+        await fetch(`${API_SERVER}/rest/db/crud/return-idx/create`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify(form),

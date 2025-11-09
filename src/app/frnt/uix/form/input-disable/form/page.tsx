@@ -2,7 +2,7 @@
 
 import '@/css/styles.css'
 import { useState } from 'react';
-const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 export default function Form() {
 
@@ -39,7 +39,7 @@ export default function Form() {
         
         if(!data.has('checkboxNormal3')) { data.set('checkboxNormal3','false') }
 
-        await fetch(`${BASE_URL}/rest/uix/form/input-disable/submit`, {
+        await fetch(`${API_SERVER}/rest/uix/form/input-disable/submit`, {
             method: 'POST',
             body: data
         });

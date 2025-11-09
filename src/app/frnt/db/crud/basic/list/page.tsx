@@ -4,17 +4,16 @@ import '@/css/styles.css'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { DbCrudType } from '@/types/db.crud.type';
-const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 export default function List() {
 	const [list, setList] = useState<DbCrudType[]>([]);
 
 	useEffect(() => {
-		fetch(`${BASE_URL}/rest/db/crud/basic/list`)
+		fetch(`${API_SERVER}/rest/db/crud/basic/list`)
 		.then(response => response.json())
 		.then(data => setList(data));
 	}, []);
-
 
 	return (
 		<div>

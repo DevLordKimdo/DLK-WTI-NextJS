@@ -1,7 +1,7 @@
 'use client'
 
 import '@/css/styles.css'
-const BASE_URL: string = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 export default function Form() {
 
@@ -10,7 +10,7 @@ export default function Form() {
         
         const data = new FormData(e.target);
 
-        await fetch(`${BASE_URL}/rest/uix/form/input-disable/submit`, {
+        await fetch(`${API_SERVER}/rest/uix/form/input-disable/submit`, {
             method: 'POST',
             body: data
         });
