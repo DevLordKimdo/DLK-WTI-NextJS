@@ -1,12 +1,25 @@
 'use client';
 
 import '@/css/styles.css'
+import { useState } from 'react';
 const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 export default function Login() {
 
-    const fn_login = () => {
 
+    const [form, setForm] = useState({ username: '' , password: '' });
+
+    const Change = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
+
+    const fn_login = async () => {
+        await fetch(`${API_SERVER}/rest/auth/login/session/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', },
+            body: JSON.stringify(form),
+            credentials: 'include'
+        });
     }
 
     return (
@@ -17,11 +30,11 @@ export default function Login() {
                     <tbody>
                         <tr>
                             <td>아이디</td>
-                            <td><input type="text" name="username"/></td>
+                            <td><input type="text" name="username" value={form.username} onChange={Change} /></td>
                         </tr>
                         <tr>
                             <td>패스워드</td>
-                            <td><input type="password" name="password"/></td>
+                            <td><input type="password" name="password" value={form.password} onChange={Change}/></td>
                         </tr>
                         <tr>
                             <td colSpan={2}>

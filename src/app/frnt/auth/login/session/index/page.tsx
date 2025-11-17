@@ -5,8 +5,12 @@ const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 export default function Index() {
 
-    const fn_logout = () => {
-
+    const fn_logout = async () => {
+        await fetch(`${API_SERVER}/rest/auth/login/session/logout`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', },
+            credentials: 'include'
+        });
     }
 
     return (
