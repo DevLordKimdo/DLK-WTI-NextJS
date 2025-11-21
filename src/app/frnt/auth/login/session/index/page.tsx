@@ -14,12 +14,12 @@ export default function Index() {
         const checkAuth = async () => {
             try {
                 const response = await fetch(`${API_SERVER}/rest/auth/login/session/index`, {
+                    method: 'GET',
                     credentials: 'include',
                 });
-                
-                const data = await response.json();
-                
-                if (data.authenticated) {
+                console.log(response);
+                const data = await response.text();
+                if (data === 'Success') {
                     setIsAuthenticated(true);
                 } else {
                     router.push('/frnt/auth/login/session/login');
