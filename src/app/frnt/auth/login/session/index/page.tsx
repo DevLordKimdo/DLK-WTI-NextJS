@@ -9,29 +9,39 @@ export default function Index() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
+    const [myData, setMyData] = useState<String>();
+
+    const checkAuth = async () => {
+        try {
+            const chkAuth = await fetch(`${API_SERVER}/rest/auth/login/session/index`, {
+                method: 'GET',
+                credentials: 'include',
+            });
+            const response = await chkAuth.text();
+            if (response === 'Success') {
+                setIsAuthenticated(true);
+            } else {
+                router.push('/frnt/auth/login/session/login');
+            }
+        } catch (error) {
+            router.push('/frnt/auth/login/session/login');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const requestData = async () => {
+        const reqData = await fetch(`${API_SERVER}/rest/auth/login/session/request-data`, {
+            method: 'GET',
+            credentials: 'include',
+        });
+        const data = await reqData.text();
+        setMyData(data);
+    }
 
     useEffect(() => {
-        const checkAuth = async () => {
-            try {
-                const response = await fetch(`${API_SERVER}/rest/auth/login/session/index`, {
-                    method: 'GET',
-                    credentials: 'include',
-                });
-                console.log(response);
-                const data = await response.text();
-                if (data === 'Success') {
-                    setIsAuthenticated(true);
-                } else {
-                    router.push('/frnt/auth/login/session/login');
-                }
-            } catch (error) {
-                router.push('/frnt/auth/login/session/login');
-            } finally {
-                setLoading(false);
-            }
-        };
-
         checkAuth();
+        requestData();
     }, [router]);
 
     if (loading) {
@@ -48,12 +58,14 @@ export default function Index() {
             headers: { 'Content-Type': 'application/json', },
             credentials: 'include'
         });
+        router.push('/frnt/auth/login/session/login');
     }
 
     return (
         <>
             <h2>WELCOME INDEX PAGE</h2>
             <button type="button" onClick={fn_logout}>로그아웃</button>
+            <div>Sample Data : {myData}</div>
             <form name="form"></form>
         </>
     );

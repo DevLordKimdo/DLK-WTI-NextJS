@@ -2,11 +2,11 @@
 
 import '@/css/styles.css'
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 const API_SERVER: string = `${process.env.NEXT_PUBLIC_API_SERVER_URL}`;
 
 export default function Login() {
-
-
+    const router = useRouter();
     const [form, setForm] = useState({ username: '' , password: '' });
 
     const Change = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -14,12 +14,16 @@ export default function Login() {
     };
 
     const fn_login = async () => {
-        await fetch(`${API_SERVER}/rest/auth/login/session/login`, {
+        const login = await fetch(`${API_SERVER}/rest/auth/login/session/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', },
             body: JSON.stringify(form),
             credentials: 'include'
         });
+        const loginResult = await login.text();
+        if (loginResult === 'Success') {
+            router.push('/frnt/auth/login/session/index');
+        }
     }
 
     return (
